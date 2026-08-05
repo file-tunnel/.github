@@ -29,7 +29,7 @@
     "contains_non_public_inventory": true,
     "digest": "sha256:c09f1e5fd0a6cb81b6b670de5f9133783ae576a1657155e4bd9b118ec63a4122",
     "path": "owners/file-tunnel.json",
-    "repository": "ORESoftware/project-registry"
+    "repository": "approved-private-registry"
   },
   "relationships": [
     {
