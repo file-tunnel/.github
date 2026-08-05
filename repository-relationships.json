@@ -1,10 +1,485 @@
 {
+  "$schema": "./repository-relationships.schema.json",
+  "audience": "public",
+  "generated": {
+    "complete_for_visibility": "public",
+    "generated_at": "2026-08-05T21:07:32Z",
+    "generator_version": "2026-08-04.1",
+    "inventory_digest": "sha256:2916f802723122d7e756a4a2afabd75d4125d544bbcd3f946885e6e93b04720b",
+    "managed_by": "ore-repository-relationship-rollout",
+    "omitted_repository_count": 1,
+    "private_repositories_omitted": true,
+    "source": "GitHub GraphQL repository inventory plus reviewed manual declarations"
+  },
+  "owner": {
+    "account_type": "organization",
+    "dotgithub_repository": "file-tunnel/.github",
+    "github_id": "310631493",
+    "linear_project": {
+      "id": "0cb3346d-19e0-4aff-8758-c5d5a4a1ed80",
+      "name": "github.com/file-tunnel",
+      "team_id": "eb8ab169-5afe-4b6f-9cab-3f2aa3e887dc",
+      "url": "https://linear.app/denman/project/githubcomfile-tunnel-f46884af1012",
+      "workspace": "denman"
+    },
+    "login": "file-tunnel",
+    "mapping_id": "context:file-tunnel"
+  },
+  "private_registry": {
+    "contains_non_public_inventory": true,
+    "digest": "sha256:c09f1e5fd0a6cb81b6b670de5f9133783ae576a1657155e4bd9b118ec63a4122",
+    "path": "owners/file-tunnel.json",
+    "repository": "ORESoftware/project-registry"
+  },
+  "relationships": [
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:030b9f280055627c2059fcf0dec3caf70334b2c79907b8969eae926cf5cd91fa",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/file-tunnel.github.io",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:b06e29fe8c47b57211d203b6ce96e97250f79ae48f5377b25defea7b6bd68b92",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-backend-api.rs",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:bdf57d7ff1587e8af288364e8fed2d788b78fb14af4fa131c4b37594e46fddd3",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-clients",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:5e9fcbe5b6fb975dcbe5b409256737f936109ecb740dd5fd0d13504ff2f864db",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-e2e",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:b854534034d0f98ab8f1affbc5532b48282d8f4a6d4a462b38352bfcb8d4ee82",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-infra",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:9b3e448f89d126a00353613baad9e52c8d223c6d2342f75fde6a60658305a299",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-interfaces",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:5c8b9950a8736a4c20a56d77b0c91ef0366d063a67ee0f5cb909c2dc873b6448",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-monorepo",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:08ec47e0bed9a491dbf5e22654c04b3ae22276de688d5d2fa229c00483e177e6",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-sync",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:107482998a57587da71aa8672c3a4830bada11fb9fd29885b8cabe2883ded399",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-ui-components",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "file-tunnel/.github",
+      "id": "sha256:b71804345571b2eee13d4d4f8c208e19d08ae2884e755fd9286c22115f539405",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "file-tunnel/ftnl-web-server.rs",
+      "type": "governs"
+    },
+    {
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "kind": "repository-name",
+          "value": "file-tunnel.github.io"
+        }
+      ],
+      "from": "file-tunnel/file-tunnel.github.io",
+      "id": "sha256:3fc6839672c7b775c1a54d54eb98d3fd7c4b5791613d4199d975ed1ea1082edf",
+      "notes": "The conventional *.github.io repository documents the organization profile.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "file-tunnel/.github",
+      "type": "documents"
+    },
+    {
+      "confidence": 0.82,
+      "evidence": [
+        {
+          "family": "ftnl",
+          "kind": "paired-repository-naming",
+          "source_role": "clients",
+          "target_role": "interfaces"
+        }
+      ],
+      "from": "file-tunnel/ftnl-clients",
+      "id": "sha256:160a37ff989fcbe6040f1ce8688704188faf9bb0206e515f826c34dfc2af0062",
+      "notes": "Conservative naming inference; confirm or override in the manual declaration file.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "file-tunnel/ftnl-interfaces",
+      "type": "depends_on"
+    },
+    {
+      "confidence": 0.78,
+      "evidence": [
+        {
+          "family": "ftnl",
+          "kind": "paired-repository-naming"
+        }
+      ],
+      "from": "file-tunnel/ftnl-e2e",
+      "id": "sha256:86e6553a7ac5ec92d4dd94a2acd04c78ae208bc3b4f5eccbb180deb24a3c30d5",
+      "notes": "Conservative naming inference; confirm or override in the manual declaration file.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "file-tunnel/ftnl-monorepo",
+      "type": "tests"
+    },
+    {
+      "confidence": 0.76,
+      "evidence": [
+        {
+          "family": "ftnl",
+          "kind": "paired-repository-naming"
+        }
+      ],
+      "from": "file-tunnel/ftnl-infra",
+      "id": "sha256:94714fa6925cbe6529985f3aa8c72d1ef428977c909314e6476aa2a48567d921",
+      "notes": "Conservative naming inference; confirm or override in the manual declaration file.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "file-tunnel/ftnl-monorepo",
+      "type": "deploys"
+    },
+    {
+      "confidence": 0.82,
+      "evidence": [
+        {
+          "family": "ftnl",
+          "kind": "paired-repository-naming",
+          "source_role": "sync",
+          "target_role": "interfaces"
+        }
+      ],
+      "from": "file-tunnel/ftnl-sync",
+      "id": "sha256:c966b73c5af89872731b1bc68ab7b3ae8caad30f8fe06091e1bbfd74c60b6c8e",
+      "notes": "Conservative naming inference; confirm or override in the manual declaration file.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "file-tunnel/ftnl-interfaces",
+      "type": "depends_on"
+    },
+    {
+      "confidence": 0.82,
+      "evidence": [
+        {
+          "family": "ftnl",
+          "kind": "paired-repository-naming",
+          "source_role": "web-server",
+          "target_role": "interfaces"
+        }
+      ],
+      "from": "file-tunnel/ftnl-web-server.rs",
+      "id": "sha256:8bb11e4e6830017b63705bb0231347d1df9a932294240aa084790ce91e30f0e9",
+      "notes": "Conservative naming inference; confirm or override in the manual declaration file.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "file-tunnel/ftnl-interfaces",
+      "type": "depends_on"
+    }
+  ],
+  "repositories": [
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/.github",
+      "github_id": "1324048851",
+      "name": ".github",
+      "owner": "file-tunnel",
+      "roles": [
+        "community-health",
+        "governance",
+        "relationship-registry"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/.github",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/file-tunnel.github.io",
+      "github_id": "1316262391",
+      "name": "file-tunnel.github.io",
+      "owner": "file-tunnel",
+      "roles": [
+        "documentation-site"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/file-tunnel.github.io",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-backend-api.rs",
+      "github_id": "1316261990",
+      "name": "ftnl-backend-api.rs",
+      "owner": "file-tunnel",
+      "roles": [
+        "api-server"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-backend-api.rs",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-clients",
+      "github_id": "1316262191",
+      "name": "ftnl-clients",
+      "owner": "file-tunnel",
+      "roles": [
+        "clients"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-clients",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-e2e",
+      "github_id": "1316262548",
+      "name": "ftnl-e2e",
+      "owner": "file-tunnel",
+      "roles": [
+        "end-to-end-tests"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-e2e",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-infra",
+      "github_id": "1316262474",
+      "name": "ftnl-infra",
+      "owner": "file-tunnel",
+      "roles": [
+        "infrastructure"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-infra",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-interfaces",
+      "github_id": "1316262257",
+      "name": "ftnl-interfaces",
+      "owner": "file-tunnel",
+      "roles": [
+        "interfaces"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-interfaces",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-monorepo",
+      "github_id": "1316262722",
+      "name": "ftnl-monorepo",
+      "owner": "file-tunnel",
+      "roles": [
+        "monorepo"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-monorepo",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-sync",
+      "github_id": "1316262319",
+      "name": "ftnl-sync",
+      "owner": "file-tunnel",
+      "roles": [
+        "sync"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-sync",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-ui-components",
+      "github_id": "1316262118",
+      "name": "ftnl-ui-components",
+      "owner": "file-tunnel",
+      "roles": [
+        "repository"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-ui-components",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "file-tunnel/ftnl-web-server.rs",
+      "github_id": "1316262060",
+      "name": "ftnl-web-server.rs",
+      "owner": "file-tunnel",
+      "roles": [
+        "web-server"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/file-tunnel/ftnl-web-server.rs",
+      "visibility": "public"
+    }
+  ],
   "schema_version": 1,
-  "organization": "file-tunnel",
-  "generated_at": null,
-  "repositories": [],
-  "notes": [
-    "Populate from live GitHub inventory; do not infer unverified dependencies.",
-    "Repository-local manifests remain authoritative for exact dependency versions."
-  ]
+  "unresolved_hints": []
 }
