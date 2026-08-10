@@ -1,27 +1,38 @@
 # File Tunnel desktop applications
 
-Verified **2026-08-06**.
+Verified **2026-08-09**.
 
 ## Required pair
 
-- Rust: [`file-tunnel/ftnl-desktop.rs`](https://github.com/file-tunnel/ftnl-desktop.rs) — **planned**, not yet verified as published.
+- Rust: [`file-tunnel/ftnl-desktop-app.rs`](https://github.com/file-tunnel/ftnl-desktop-app.rs) — **published**; native source, Nix, and Linux/macOS/Windows CI verified at `c8da8e9f89bfd04c57160f29a44aa0416d430a71`.
 - Flutter: [`file-tunnel/ftnl-flutter`](https://github.com/file-tunnel/ftnl-flutter) — **planned**, not yet verified as published.
 
-These names supersede the earlier `file-tunnel-desktop.rs` and `file-tunnel-flutter` proposals. Do not mark either implementation live until the remote, native build, packaging, tests, and platform matrix are verified.
+The Rust receiver complements rather than replaces the planned Flutter app. Do
+not mark Flutter live until its remote, native build, packaging, tests, and
+platform matrix are verified.
 
-## Rust desktop kit: GPUI, fully native
+## Rust desktop kit: egui/eframe, fully native
 
-The Rust application uses **GPUI** with no embedded WebView.
+The Rust application uses **egui/eframe** with no embedded WebView.
 
-Rust owns transfer/session state, encryption and integrity, authentication, filesystem access, resumability, bandwidth control, persistence, deep-link parsing, and privileged operations. GPUI owns native presentation, virtualized queues, progress rendering, keyboard navigation, drag/drop surfaces, tray windows, and low-latency interaction.
+Rust owns transfer/session state, integrity checks, authentication, filesystem
+access, safe atomic persistence, and privileged operations. The egui host owns
+native presentation and delegates reusable render state to
+`ftnl-ui-components`. The current protocol supports snapshot reconciliation but
+does not yet claim byte-offset download resume.
 
-The future Rust repository must contain `docs/DESKTOP_TOOLKIT.md` covering the GPUI version policy, no-WebView rule, transfer/security boundary, native integrations, performance budgets, deep-link contract, packaging matrix, and Flutter companion.
+The Rust repository README documents its no-WebView rule, transfer/security
+boundary, native integration, validation matrix, and Flutter companion. Future
+packaging and deep-link work must preserve those boundaries.
 
 ## Parallel Rust and Flutter development
 
 Both applications are first-class implementations developed against the same product features. They exist to compare native performance and integration against Flutter portability/mobile reuse, accessibility, developer velocity, packaging, security, and long-term maintenance.
 
-Every desktop-facing feature must inspect both repositories, share acceptance criteria and fixtures, and normally update both. A one-sided change requires an explicit no-change rationale and parity gap. The future `ftnl-desktop.rs` README, `AGENTS.md`, pull-request template, and `docs/DESKTOP_TOOLKIT.md` must state this rule prominently.
+Every desktop-facing feature must inspect both repositories, share acceptance
+criteria and fixtures, and normally update both. A one-sided change requires an
+explicit no-change rationale and parity gap. The `ftnl-desktop-app.rs` README,
+agent instructions, and pull-request template must state this rule prominently.
 
 ## HTTPS-first deep links
 
@@ -67,8 +78,8 @@ Both implementations should converge on:
 
 - GitHub Project: [`file-tunnel-project` — Project 1](https://github.com/orgs/file-tunnel/projects/1)
 - Linear project: `github.com/file-tunnel`
-- Central registry: [`approved-private-registry`](private-registry://canonical/registry/desktop-applications.json)
-- Toolkit strategy: [`approved-private-registry`](private-registry://canonical/docs/rust-desktop-strategies.md)
+- Central registry: `approved-private-registry` portfolio registry (opaque internal locator; no private repository URL is committed here)
+- Toolkit strategy: `approved-private-registry` desktop strategy (opaque internal locator; no private repository URL is committed here)
 - Portfolio rollout: [`DEN-2469`](https://linear.app/denman/issue/DEN-2469/roll-out-paired-rust-flutter-desktop-repositories-across-the-portfolio)
 
 Repository creation, toolkit changes, deep-link changes, renames, transfers, archival, or platform-status changes must update this document, Linear, the central registry/strategy, and both companion repositories together.
