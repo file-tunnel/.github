@@ -67,8 +67,8 @@ Both implementations should converge on:
 
 - GitHub Project: [`file-tunnel-project` — Project 1](https://github.com/orgs/file-tunnel/projects/1)
 - Linear project: `github.com/file-tunnel`
-- Central registry: [`desktop-applications.json`](https://github.com/ORESoftware/project-registry/blob/main/registry/desktop-applications.json)
-- Toolkit strategy: [`rust-desktop-strategies.md`](https://github.com/ORESoftware/project-registry/blob/main/docs/rust-desktop-strategies.md)
+- Central registry: [`approved-private-registry`](private-registry://canonical/registry/desktop-applications.json)
+- Toolkit strategy: [`approved-private-registry`](private-registry://canonical/docs/rust-desktop-strategies.md)
 - Portfolio rollout: [`DEN-2469`](https://linear.app/denman/issue/DEN-2469/roll-out-paired-rust-flutter-desktop-repositories-across-the-portfolio)
 
 Repository creation, toolkit changes, deep-link changes, renames, transfers, archival, or platform-status changes must update this document, Linear, the central registry/strategy, and both companion repositories together.

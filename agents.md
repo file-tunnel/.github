@@ -46,6 +46,8 @@ The blacklist includes, without limitation:
 - deleting repositories, worktrees, submodules, branches, tags, releases, packages, artifacts, registries, environments, evidence, audit logs, customer data, or production state;
 - bypassing hooks, reviews, branch protection, rulesets, required checks, security/compliance gates, approvals, or audit logging, including `--no-verify` and equivalent bypasses.
 
+For shared-history synchronization, avoid git rebase in favor of git merge.
+
 Do not use destructive commands merely to make tests pass, clear a conflict, simplify a migration, or hide an inconvenient state.
 
 ### Required safe alternatives
