@@ -2,9 +2,9 @@
 
 Generated from reviewed policy and the current **public** repository inventory.
 
-- Public repositories declared: **12**
-- Private repository names withheld: **1**
-- Relationship edges: **39**
+- Public repositories declared: **16**
+- Private repository names withheld: **10**
+- Relationship edges: **56**
 
 ## Repository roles
 
@@ -22,6 +22,10 @@ Generated from reviewed policy and the current **public** repository inventory.
 | [`ftnl-e2e`](https://github.com/file-tunnel/ftnl-e2e) | `end_to_end_tests` | `active` |
 | [`ftnl-monorepo`](https://github.com/file-tunnel/ftnl-monorepo) | `composition_workspace` | `active` |
 | [`ftnl-ui-components`](https://github.com/file-tunnel/ftnl-ui-components) | `uncategorized` | `active` |
+| [`ftnl-desktop-app.rs`](https://github.com/file-tunnel/ftnl-desktop-app.rs) | `desktop_app` | `active` |
+| [`ftnl-lib-core`](https://github.com/file-tunnel/ftnl-lib-core) | `core_library` | `active` |
+| [`ftnl-pub-lib-core`](https://github.com/file-tunnel/ftnl-pub-lib-core) | `public_library` | `active` |
+| [`ftnl-supabase`](https://github.com/file-tunnel/ftnl-supabase) | `supabase_adapter` | `active` |
 
 ## Declared edges
 
@@ -31,37 +35,54 @@ Generated from reviewed policy and the current **public** repository inventory.
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-cli` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-clients` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
+| `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-desktop-app.rs` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-e2e` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-infra` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-interfaces` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
+| `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-lib-core` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-monorepo` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
+| `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-pub-lib-core` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
+| `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-supabase` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-sync` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-ui-components` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/.github` | `governs` | `file-tunnel/ftnl-web-server.rs` | `inferred` / `role-convention`: organization defaults, safety, and relationship declarations |
 | `file-tunnel/ftnl-backend-api.rs` | `implements_contracts_from` | `file-tunnel/ftnl-interfaces` | `inferred` / `role-convention`: service boundary implements canonical contracts |
 | `file-tunnel/ftnl-cli` | `calls` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: client uses the product service boundary |
 | `file-tunnel/ftnl-clients` | `generated_from` | `file-tunnel/ftnl-interfaces` | `inferred` / `role-convention`: SDK bindings derive from canonical contracts |
+| `file-tunnel/ftnl-desktop-app.rs` | `calls` | `file-tunnel/ftnl-backend-api.rs` | `declared` / `reviewed-architecture`: desktop client uses the product service boundary |
+| `file-tunnel/ftnl-desktop-app.rs` | `generated_from` | `file-tunnel/ftnl-interfaces` | `declared` / `reviewed-architecture`: desktop commands and events derive from canonical contracts |
+| `file-tunnel/ftnl-desktop-app.rs` | `depends_on` | `file-tunnel/ftnl-ui-components` | `declared` / `reviewed-architecture`: desktop surfaces reuse the shared UI component contract |
 | `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/file-tunnel.github.io` | `inferred` / `role-convention`: black-box compatibility verification |
 | `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: black-box compatibility verification |
 | `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/ftnl-cli` | `inferred` / `role-convention`: black-box compatibility verification |
+| `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/ftnl-desktop-app.rs` | `declared` / `reviewed-architecture`: black-box desktop contract and user-flow verification |
 | `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/ftnl-sync` | `inferred` / `role-convention`: black-box compatibility verification |
+| `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/ftnl-supabase` | `declared` / `reviewed-architecture`: black-box Supabase adapter and row-level authorization verification |
 | `file-tunnel/ftnl-e2e` | `tests` | `file-tunnel/ftnl-web-server.rs` | `inferred` / `role-convention`: black-box compatibility verification |
 | `file-tunnel/ftnl-infra` | `deploys` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: product infrastructure declares runtime resources |
 | `file-tunnel/ftnl-infra` | `deploys` | `file-tunnel/ftnl-cli` | `inferred` / `role-convention`: product infrastructure declares runtime resources |
 | `file-tunnel/ftnl-infra` | `deploys` | `file-tunnel/ftnl-sync` | `inferred` / `role-convention`: product infrastructure declares runtime resources |
+| `file-tunnel/ftnl-infra` | `deploys` | `file-tunnel/ftnl-supabase` | `declared` / `reviewed-architecture`: product infrastructure declares Supabase migrations and runtime resources |
 | `file-tunnel/ftnl-infra` | `deploys` | `file-tunnel/ftnl-web-server.rs` | `inferred` / `role-convention`: product infrastructure declares runtime resources |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/file-tunnel.github.io` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-cli` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-clients` | `inferred` / `role-convention`: development workspace and release bill of materials |
+| `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-desktop-app.rs` | `declared` / `reviewed-architecture`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-e2e` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-infra` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-interfaces` | `inferred` / `role-convention`: development workspace and release bill of materials |
+| `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-lib-core` | `declared` / `reviewed-architecture`: development workspace and release bill of materials |
+| `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-pub-lib-core` | `declared` / `reviewed-architecture`: development workspace and release bill of materials |
+| `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-supabase` | `declared` / `reviewed-architecture`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-sync` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-ui-components` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-monorepo` | `composes` | `file-tunnel/ftnl-web-server.rs` | `inferred` / `role-convention`: development workspace and release bill of materials |
 | `file-tunnel/ftnl-sync` | `synchronizes_with` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: sync exchanges state through the product service boundary |
 | `file-tunnel/ftnl-sync` | `uses_contracts_from` | `file-tunnel/ftnl-interfaces` | `inferred` / `role-convention`: sync payloads follow canonical schemas |
+| `file-tunnel/ftnl-lib-core` | `uses_contracts_from` | `file-tunnel/ftnl-interfaces` | `declared` / `reviewed-architecture`: backend-safe core types and validation follow canonical schemas |
+| `file-tunnel/ftnl-pub-lib-core` | `uses_contracts_from` | `file-tunnel/ftnl-interfaces` | `declared` / `reviewed-architecture`: frontend-safe public types and validation follow canonical browser and edge schemas |
+| `file-tunnel/ftnl-supabase` | `implements_contracts_from` | `file-tunnel/ftnl-interfaces` | `declared` / `reviewed-architecture`: database adapters and row-level authorization follow canonical service contracts |
 | `file-tunnel/ftnl-web-server.rs` | `calls` | `file-tunnel/ftnl-backend-api.rs` | `inferred` / `role-convention`: client uses the product service boundary |
 | `organization://file-tunnel` | `reconciles_via` | `platform://opto-sync` | `platform-default` / `platform-policy`: product sync wraps the generic reconciliation engine |
 | `organization://file-tunnel` | `deployed_via` | `platform://ORESoftware/k8s-cluster` | `platform-default` / `platform-policy`: immutable artifacts are promoted by digest through GitOps |
