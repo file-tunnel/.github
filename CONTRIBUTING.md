@@ -21,6 +21,16 @@ An AI agent may merge only when all of the following are true:
 
 Confidence is an additional gate, not a substitute for tests, reviews, approvals, or branch protection. Never bypass protections, force-merge, dismiss valid reviews, or represent a skipped, cancelled, neutral, stale, or failing check as passing.
 
+### Exact-tree and base-freshness evidence
+
+PR-head CI is necessary but is not sufficient when the target branch can move before a squash or merge commit is created.
+
+- The tested PR head must contain the **live target tip** immediately before merge. Protected production branches should require branches to be up to date before merging.
+- A successful workflow with no executed jobs or steps is not validation evidence. Treat zero-step, startup-failure, skipped, cancelled, neutral, or stale results as non-passing.
+- Record the exact tested head SHA and, after merge, the resulting Git tree SHA. If the merge tree differs from the tested PR-head tree, require successful validation on the exact merged SHA before treating the merge as qualified.
+- If the source organization cannot execute Actions because of minutes/budget or runner exhaustion, use a reviewed private carrier in an organization with available capacity. Re-create the **exact source Git tree**, verify the destination root tree SHA equals the source tree SHA, and run the carrier with its own token/minutes.
+- Never give the carrier a token or secret that can read the private source repository. Transfer content-addressed Git objects through the authorized control plane, keep source secrets out of the carrier, and bind evidence to the source tree SHA, carrier commit SHA, workflow run attempt, jobs, and executed steps.
+
 ### Feature branch to `dev`
 
 When every gate above passes and the AI's calibrated confidence that the feature is correct, complete, and safe is **strictly greater than 99.1%**, retarget the pull request if necessary and merge it into `dev`, the integration branch.

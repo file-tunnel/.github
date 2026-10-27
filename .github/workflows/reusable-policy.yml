@@ -11,10 +11,37 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Check out caller repository
+      - name: Check out exact caller revision
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
           persist-credentials: false
+      - name: Require exact PR head and live target ancestry
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        env:
+          EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          actual_head="$(git rev-parse HEAD)"
+          if [[ "$actual_head" != "$EXPECTED_HEAD_SHA" ]]; then
+            echo "::error::checkout drift: expected PR head $EXPECTED_HEAD_SHA, got $actual_head"
+            exit 1
+          fi
+
+          live_base="$(git rev-parse "refs/remotes/origin/${BASE_REF}")"
+          if [[ "$live_base" != "$EVENT_BASE_SHA" ]]; then
+            echo "::error::target branch moved: event base $EVENT_BASE_SHA, live base $live_base; refresh/re-run before merge"
+            exit 1
+          fi
+
+          if ! git merge-base --is-ancestor "$live_base" "$actual_head"; then
+            echo "::error::PR head $actual_head does not contain live target tip $live_base; update the branch before merge"
+            exit 1
+          fi
       - name: Require lowercase agent policy
         shell: bash
         run: |

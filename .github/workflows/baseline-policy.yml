@@ -38,4 +38,12 @@ jobs:
           done
           python3 -m json.tool organization-policy.json >/dev/null
           python3 -m json.tool repository-relationships.json >/dev/null
+          grep -Fq '"live_target_ancestry": true' organization-policy.json
+          grep -Fq '"strict_branch_freshness_required": true' organization-policy.json
+          grep -Fq '"zero_step_ci_is_failure": true' organization-policy.json
+          grep -Fq '"post_merge_exact_tree_validation": true' organization-policy.json
+          grep -Fq '"exact_tree_sha_required": true' organization-policy.json
+          grep -Fq '"cross_org_checkout_tokens": false' organization-policy.json
+          grep -Fq 'Require exact PR head and live target ancestry' .github/workflows/reusable-policy.yml
+          grep -Fq 'git merge-base --is-ancestor "$live_base" "$actual_head"' .github/workflows/reusable-policy.yml
           ! git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- . ':!*.lock'
