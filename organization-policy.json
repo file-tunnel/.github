@@ -14,6 +14,15 @@
   },
   "validation": {
     "exact_head": true,
-    "truthful_evidence": true
+    "live_target_ancestry": true,
+    "strict_branch_freshness_required": true,
+    "zero_step_ci_is_failure": true,
+    "post_merge_exact_tree_validation": true,
+    "truthful_evidence": true,
+    "carrier_fallback": {
+      "exact_tree_sha_required": true,
+      "cross_org_checkout_tokens": false,
+      "source_secrets_forbidden": true
+    }
   }
 }
