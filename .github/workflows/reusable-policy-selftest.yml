@@ -1,0 +1,11 @@
+name: reusable policy self-test
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  organization-policy:
+    uses: ./.github/workflows/reusable-policy.yml
