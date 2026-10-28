@@ -67,6 +67,15 @@ jobs:
             echo "::error::base/head freshness predicate accepted a negative fixture"
             exit 1
           fi
+          # A SHA can be valid and locally present but still be unrelated to
+          # the proposed head: prove ancestry cannot be reduced to SHA shape.
+          unrelated="$(printf 'orphan ancestry negative control\n' |
+            git -c user.name='CI Fixture' -c user.email='ci@invalid.example' \
+              commit-tree "$(git rev-parse 'HEAD^{tree}')")"
+          if snapshot_ok "$actual_head" "$EXPECTED_HEAD_SHA" "$unrelated" "$unrelated"; then
+            echo "::error::non-ancestor live target was admitted"
+            exit 1
+          fi
       - name: Require lowercase agent policy
         shell: bash
         run: |
