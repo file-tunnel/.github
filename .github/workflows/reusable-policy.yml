@@ -24,6 +24,7 @@ jobs:
           EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           BASE_REF: ${{ github.event.pull_request.base.ref }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           actual_head="$(git rev-parse HEAD)"
@@ -32,14 +33,47 @@ jobs:
             exit 1
           fi
 
-          live_base="$(git rev-parse "refs/remotes/origin/${BASE_REF}")"
+          # The checkout's origin/<base> remote-tracking ref is only a snapshot:
+          # query the caller repository's *live* ref from GitHub, fail-closed.
+          git check-ref-format --branch "$BASE_REF" >/dev/null
+          live_base="$(gh api -H 'Accept: application/vnd.github+json' \
+            "repos/${GITHUB_REPOSITORY}/git/ref/heads/${BASE_REF}" --jq '.object.sha')"
+
+          sha40() { [[ "$1" =~ ^[0-9a-f]{40}$ ]]; }
+          snapshot_ok() {
+            sha40 "$1" && sha40 "$2" && sha40 "$3" && sha40 "$4" &&
+              [[ "$1" == "$2" && "$3" == "$4" ]] &&
+              git merge-base --is-ancestor "$4" "$1"
+          }
+          if ! sha40 "$live_base"; then
+            echo "::error::live base ref did not resolve to a valid commit SHA"
+            exit 1
+          fi
           if [[ "$live_base" != "$EVENT_BASE_SHA" ]]; then
-            echo "::error::target branch moved: event base $EVENT_BASE_SHA, live base $live_base; refresh/re-run before merge"
+            echo "::error::target moved: event base $EVENT_BASE_SHA, live base $live_base; refresh/re-run"
+            exit 1
+          fi
+          if ! snapshot_ok "$actual_head" "$EXPECTED_HEAD_SHA" "$EVENT_BASE_SHA" "$live_base"; then
+            echo "::error::exact head, event/live base, or live-target ancestry check failed"
             exit 1
           fi
 
-          if ! git merge-base --is-ancestor "$live_base" "$actual_head"; then
-            echo "::error::PR head $actual_head does not contain live target tip $live_base; update the branch before merge"
+          # Adversarial negative checks against the *same* predicate; a false
+          # success here is an admission-gate regression, not passing evidence.
+          invalid=0000000000000000000000000000000000000000
+          if snapshot_ok "$actual_head" "$invalid" "$EVENT_BASE_SHA" "$live_base" ||
+             snapshot_ok "$actual_head" "$EXPECTED_HEAD_SHA" "$invalid" "$live_base" ||
+             snapshot_ok "$actual_head" "$EXPECTED_HEAD_SHA" "$EVENT_BASE_SHA" "$invalid" 2>/dev/null; then
+            echo "::error::base/head freshness predicate accepted a negative fixture"
+            exit 1
+          fi
+          # A SHA can be valid and locally present but still be unrelated to
+          # the proposed head: prove ancestry cannot be reduced to SHA shape.
+          unrelated="$(printf 'orphan ancestry negative control\n' |
+            git -c user.name='CI Fixture' -c user.email='ci@invalid.example' \
+              commit-tree "$(git rev-parse 'HEAD^{tree}')")"
+          if snapshot_ok "$actual_head" "$EXPECTED_HEAD_SHA" "$unrelated" "$unrelated"; then
+            echo "::error::non-ancestor live target was admitted"
             exit 1
           fi
       - name: Require lowercase agent policy

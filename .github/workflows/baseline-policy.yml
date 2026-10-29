@@ -16,7 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+      - name: Assert exact checkout
+        shell: bash
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
       - name: Validate organization baseline
         shell: bash
         run: |
@@ -45,5 +51,7 @@ jobs:
           grep -Fq '"exact_tree_sha_required": true' organization-policy.json
           grep -Fq '"cross_org_checkout_tokens": false' organization-policy.json
           grep -Fq 'Require exact PR head and live target ancestry' .github/workflows/reusable-policy.yml
-          grep -Fq 'git merge-base --is-ancestor "$live_base" "$actual_head"' .github/workflows/reusable-policy.yml
+          grep -Fq 'repos/${GITHUB_REPOSITORY}/git/ref/heads/${BASE_REF}' .github/workflows/reusable-policy.yml
+          grep -Fq 'snapshot_ok "$actual_head" "$EXPECTED_HEAD_SHA" "$EVENT_BASE_SHA" "$live_base"' .github/workflows/reusable-policy.yml
+          grep -Fq 'snapshot_ok "$actual_head" "$invalid"' .github/workflows/reusable-policy.yml
           ! git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- . ':!*.lock'
