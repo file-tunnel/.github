@@ -30,6 +30,7 @@ PHRASES = [
     'git stash', 'git reset', 'git clean', 'git filter-repo',
     '3–10 relevant commits', 'Never report',
 ]
+USES_PATTERN = re.compile(r'^\s*(?:-\s+)?uses:\s*([^\s#]+)')
 SECRET_PATTERNS = [
     re.compile(r'gh[pousr]_[A-Za-z0-9]{20,}'),
     re.compile(r'github_pat_[A-Za-z0-9_]{20,}'),
@@ -74,7 +75,7 @@ for path in workflow_paths:
     if 'timeout-minutes:' not in text:
         fail(f'workflow lacks timeout: {path.relative_to(ROOT)}')
     for number, line in enumerate(text.splitlines(), 1):
-        match = re.search(r'^\s*(?:-\s+)?uses:\s*([^\s#]+)', line)
+        match = USES_PATTERN.search(line)
         if not match:
             continue
         ref = match.group(1)
