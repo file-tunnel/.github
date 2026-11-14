@@ -23,6 +23,8 @@ jobs:
         env:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+      - name: Test hardened baseline scanner patterns
+        run: python3 scripts/test_policy_patterns.py
       - name: Validate organization baseline
         shell: bash
         run: |
