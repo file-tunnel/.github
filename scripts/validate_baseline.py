@@ -73,7 +73,14 @@ for path in workflow_paths:
     if 'permissions:' not in text:
         fail(f'workflow lacks explicit permissions: {path.relative_to(ROOT)}')
     if 'timeout-minutes:' not in text:
-        fail(f'workflow lacks timeout: {path.relative_to(ROOT)}')
+        # Jobs that *call* a reusable workflow cannot specify timeout-minutes
+        # at the caller site; timeout belongs to jobs in the invoked workflow.
+        caller_only = bool(re.search(
+            r'^jobs:\s*\n\s+[A-Za-z0-9_-]+:\s*\n\s+uses:\s+\.\/\S+',
+            text, re.MULTILINE,
+        ))
+        if not caller_only:
+            fail(f'workflow lacks timeout: {path.relative_to(ROOT)}')
     for number, line in enumerate(text.splitlines(), 1):
         match = USES_PATTERN.search(line)
         if not match:
