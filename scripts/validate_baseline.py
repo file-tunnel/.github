@@ -34,7 +34,7 @@ SECRET_PATTERNS = [
     re.compile(r'gh[pousr]_[A-Za-z0-9]{20,}'),
     re.compile(r'github_pat_[A-Za-z0-9_]{20,}'),
     re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----'),
-    re.compile(r'(?i)authorization:\\s*bearer\\s+[A-Za-z0-9._-]{16,}'),
+    re.compile(r'(?i)authorization:\s*bearer\s+[A-Za-z0-9._-]{16,}'),
 ]
 
 def fail(message: str) -> None:
@@ -74,7 +74,7 @@ for path in workflow_paths:
     if 'timeout-minutes:' not in text:
         fail(f'workflow lacks timeout: {path.relative_to(ROOT)}')
     for number, line in enumerate(text.splitlines(), 1):
-        match = re.search(r'^\\s*(?:-\\s+)?uses:\\s*([^\\s#]+)', line)
+        match = re.search(r'^\s*(?:-\s+)?uses:\s*([^\s#]+)', line)
         if not match:
             continue
         ref = match.group(1)
